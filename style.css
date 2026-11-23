@@ -49,6 +49,8 @@ input:hover, select:hover { border-color: rgba(148, 163, 184, 0.4); }
 .brand { display: flex; align-items: center; gap: 8px; }
 .brand b { font-size: 16px; letter-spacing: 0.02em; }
 .tag { color: var(--muted); font-size: 12px; }
+.preset { display: flex; align-items: center; gap: 6px; }
+.plabel { color: var(--muted); font-size: 11px; }
 .logo { width: 18px; height: 18px; border-radius: 4px; background: linear-gradient(135deg, var(--accent), #a78bfa); }
 .tools { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 

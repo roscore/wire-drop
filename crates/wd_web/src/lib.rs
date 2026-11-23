@@ -507,6 +507,13 @@ fn on_click(ev: Event) {
             "csv" => return download_csv(a),
             "lang" => {
                 a.en = !a.en;
+                // Re-localize run names that are still untouched preset names.
+                let names: Vec<(&str, &str)> = presets().iter().flat_map(|p| p.runs.iter().map(|r| (r.0, r.1))).collect();
+                for r in &mut a.runs {
+                    if let Some(&(ko, en)) = names.iter().find(|(ko, en)| r.name == *ko || r.name == *en) {
+                        r.name = (if a.en { en } else { ko }).into();
+                    }
+                }
                 render_text(a);
             }
             "hint" => return { by_id("hint").map(|h| h.remove()); },
