@@ -1,0 +1,10 @@
+[package]
+name = "wd_core"
+description = "Steady-state DC harness wire sizing model for Wire Drop"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[lib]
+doctest = false

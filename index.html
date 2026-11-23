@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'">
+  <meta name="color-scheme" content="dark">
+  <title>Wire Drop</title>
+  <link rel="icon" href="data:,">
+  <link data-trunk rel="rust" href="crates/wd_web/Cargo.toml">
+  <link data-trunk rel="css" href="style.css">
+  <link data-trunk rel="copy-file" href="boot.js">
+  <script type="module" src="/wire-drop/boot.js"></script>
+</head>
+<body>
+  <header class="toolbar">
+    <div class="brand"><span class="logo" aria-hidden="true"></span><b>Wire Drop</b><span class="tag" data-i18n="tagline"></span></div>
+    <div class="tools">
+      <label class="preset"><span class="sr" data-i18n="preset"></span>
+        <select id="preset">
+          <option value="0" data-i18n="p0"></option>
+          <option value="1" data-i18n="p1"></option>
+          <option value="2" data-i18n="p2"></option>
+        </select>
+      </label>
+      <button data-action="add" data-i18n="add"></button>
+      <button data-action="csv" data-i18n="csv"></button>
+      <button class="ghost" data-action="lang" data-i18n="lang"></button>
+    </div>
+  </header>
+
+  <div id="hint" class="hint" role="note">
+    <span data-i18n="hint"></span>
+    <button class="ghost small" data-action="hint" data-i18n="dismiss"></button>
+  </div>
+
+  <section class="hero">
+    <div id="hud" class="hud" aria-live="polite"></div>
+    <div class="ladder-wrap">
+      <canvas id="ladder" tabindex="0" aria-label="Voltage ladder"></canvas>
+      <div id="tip" class="tip" role="tooltip"></div>
+    </div>
+    <p class="legend" data-i18n="legend"></p>
+  </section>
+
+  <main class="layout">
+    <aside id="sheet" class="sheet">
+      <button class="sheet-handle" data-action="sheet" data-i18n="settings"></button>
+      <details class="card" open>
+        <summary data-i18n="supply_card"></summary>
+        <label><span data-i18n="supply_v"></span><input id="supply" type="number" inputmode="decimal" min="0" step="0.1"></label>
+        <label><span data-i18n="budget"></span><input id="budget" type="number" inputmode="decimal" min="0" step="0.1"></label>
+      </details>
+      <details class="card" open>
+        <summary data-i18n="cond_card"></summary>
+        <label><span data-i18n="material"></span>
+          <select id="material">
+            <option value="cu" data-i18n="cu"></option>
+            <option value="tcu" data-i18n="tcu"></option>
+            <option value="al" data-i18n="al"></option>
+          </select>
+        </label>
+        <label><span data-i18n="temp"></span><input id="temp" type="number" inputmode="decimal" step="1"></label>
+      </details>
+      <details class="card">
+        <summary data-i18n="model_card"></summary>
+        <p class="muted" data-i18n="model"></p>
+        <p class="muted" data-i18n="amp_note"></p>
+      </details>
+    </aside>
+
+    <div class="main">
+      <section class="panel">
+        <h2 data-i18n="runs"></h2>
+        <div class="scroll"><table id="runs" class="grid edit"></table></div>
+      </section>
+      <section class="panel">
+        <h2 data-i18n="results"></h2>
+        <div class="scroll"><table id="results" class="grid"></table></div>
+        <p class="note" data-i18n="amp_note"></p>
+      </section>
+      <section class="panel">
+        <h2 data-i18n="plot"></h2>
+        <canvas id="plot" aria-hidden="true"></canvas>
+      </section>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <p data-i18n="model"></p>
+    <p data-i18n="privacy"></p>
+  </footer>
+</body>
+</html>
